@@ -1,0 +1,22 @@
+version: '3.3'
+
+services:
+  uptime-kuma:
+    image: louislam/uptime-kuma:1
+    container_name: uptime-kuma
+    restart: always
+    environment:
+      - VIRTUAL_HOST=uptime.asimz.com
+      - LETSENCRYPT_HOST=uptime.asimz.com
+      - LETSENCRYPT_EMAIL=email@example.app
+      - VIRTUAL_PORT=3001
+    volumes:
+      - ./data:/app/data
+      - "/etc/localtime:/etc/localtime:ro"
+#    ports:
+#      - 3001:3001  # <Host Port>:<Container Port>
+
+networks:
+    default:
+        external:
+            name: webproxy
